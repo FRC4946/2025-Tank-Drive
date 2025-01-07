@@ -4,11 +4,13 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix6.hardware.TalonFX;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ExampleSubsystem extends SubsystemBase {
- 
+ TalonFX motor1;
   public ExampleSubsystem() {}
   /**
    * Example command factory method.
@@ -22,7 +24,7 @@ public class ExampleSubsystem extends SubsystemBase {
         () -> {
           /* one-time action goes here */
         });
-        
+
   }
 
   /**
@@ -30,7 +32,10 @@ public class ExampleSubsystem extends SubsystemBase {
    *
    * @return value of some boolean subsystem state, such as a digital sensor.
    */
-  public double setSpeed(double speed){}
+  public void setSpeed(double speed){
+    motor1.setVoltage(speed);
+  }
+  public double getSpeed(){return motor1.get();}
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

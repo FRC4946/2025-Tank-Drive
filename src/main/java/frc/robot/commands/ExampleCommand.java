@@ -3,12 +3,17 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.commands;
-
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.ExampleSubsystem;
+
+import com.ctre.phoenix6.hardware.TalonFX;
+
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /** An example command that uses an example subsystem. */
 public class ExampleCommand extends Command {
+  Joystick exampleJoystick = new Joystick(0);
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final ExampleSubsystem m_subsystem;
 
@@ -25,11 +30,31 @@ public class ExampleCommand extends Command {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+
+
+  public void initialize() {
+
+    TalonFX motor1 = new TalonFX(1);
+
+    double joyY = exampleJoystick.getY();
+    while(true){
+      joyY = exampleJoystick.getY();
+    if (joyY>=0.2){motor1.setVoltage(0.3+joyY);}
+    if (joyY>=-0.2){motor1.setVoltage(-0.3+joyY);}
+    else{motor1.setVoltage(0);
+    }
+  
+  }
+  
+  }
+      
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    
+
+  }
 
   // Called once the command ends or is interrupted.
   @Override
