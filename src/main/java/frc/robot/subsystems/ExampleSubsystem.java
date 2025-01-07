@@ -8,9 +8,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ExampleSubsystem extends SubsystemBase {
-  /** Creates a new ExampleSubsystem. */
+ 
   public ExampleSubsystem() {}
-
   /**
    * Example command factory method.
    *
@@ -23,6 +22,7 @@ public class ExampleSubsystem extends SubsystemBase {
         () -> {
           /* one-time action goes here */
         });
+        
   }
 
   /**
@@ -30,11 +30,7 @@ public class ExampleSubsystem extends SubsystemBase {
    *
    * @return value of some boolean subsystem state, such as a digital sensor.
    */
-  public boolean exampleCondition() {
-    // Query some boolean state, such as a digital sensor.
-    return false;
-  }
-
+  public double setSpeed(double speed){}
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
