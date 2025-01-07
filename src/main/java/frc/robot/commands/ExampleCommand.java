@@ -9,11 +9,12 @@ import frc.robot.subsystems.ExampleSubsystem;
 import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /** An example command that uses an example subsystem. */
 public class ExampleCommand extends Command {
-  Joystick exampleJoystick = new Joystick(0);
+  XboxController con = new XboxController(0);
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final ExampleSubsystem m_subsystem;
 
@@ -31,25 +32,38 @@ public class ExampleCommand extends Command {
   // Called when the command is initially scheduled.
   @Override
 
+ 
 
   public void initialize() {
-
-    TalonFX motor1 = new TalonFX(1);
-
-    double joyY = exampleJoystick.getY();
+    double y = con.getLeftY();
     while(true){
-      joyY = exampleJoystick.getY();
-    if (joyY>=0.2){motor1.setVoltage(0.3+joyY);}
-    if (joyY>=-0.2){motor1.setVoltage(-0.3+joyY);}
-    else{motor1.setVoltage(0);
-    }
-  
-  }
-  
-  }
-      
 
-  // Called every time the scheduler runs while the command is scheduled.
+    y = con.getLeftY();
+    if(y>=0.1){m_subsystem.leftDrive(y);}
+    if(y<=-0.1){m_subsystem.leftDrive(y);}
+    else{m_subsystem.leftDrive(0);}
+      
+    y = con.getRightY();
+    if(y>=0.1){m_subsystem.rightDrive(y);}
+    if(y<=-0.1){m_subsystem.rightDrive(y);}
+    else{m_subsystem.rightDrive(0);}
+
+    if(con.getAButtonPressed()){
+      m_subsystem.armMotor(0.1);
+    }
+    if(con.getBButtonPressed()){
+      m_subsystem.armMotor(-0.1);
+    }
+    else{m_subsystem.armMotor(-0);}
+
+        }
+      }
+      
+    
+          
+    
+
+      // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     
