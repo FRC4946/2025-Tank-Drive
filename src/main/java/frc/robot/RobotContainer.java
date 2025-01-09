@@ -8,7 +8,10 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -27,7 +30,6 @@ public class RobotContainer {
   private final CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
       XboxController exampleXbox = new XboxController(0); // 0 is the USB Port to be used as indicated on the Driver Station
-
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
@@ -45,8 +47,10 @@ public class RobotContainer {
    */
   private void configureBindings() {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    new Trigger(m_exampleSubsystem::exampleCondition)
+    new Trigger(m_exampleSubsystem::turnRightCommand)
         .onTrue(new ExampleCommand(m_exampleSubsystem));
+        
+        
 
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
 

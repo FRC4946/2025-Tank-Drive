@@ -19,13 +19,20 @@ public class ExampleCommand extends Command {
    */
   public ExampleCommand(ExampleSubsystem subsystem) {
     m_subsystem = subsystem;
+    m_subsystem.rightWheels(0.01);
+    m_subsystem.leftWheels(0.01);
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    m_subsystem.rightWheels(0.01);
+    m_subsystem.leftWheels(0.01);
+  }
+
+ 
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
