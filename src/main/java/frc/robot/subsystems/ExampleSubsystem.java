@@ -33,6 +33,11 @@ motor6.setPosition(0);
 motor7.setPosition(0);
 motor8.setPosition(0);
 motor9.setPosition(0);
+motor6.setNeutralMode(NeutralMode.Brake);
+motor7.setNeutralMode(NeutralMode.Brake);
+motor8.setNeutralMode(NeutralMode.Brake);
+motor9.setNeutralMode(NeutralMode.Brake);
+
   }
   /**
    * An example method querying a boolean state of the subsystem (for example, a digital sensor).
