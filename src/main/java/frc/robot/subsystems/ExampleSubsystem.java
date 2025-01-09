@@ -12,7 +12,21 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class ExampleSubsystem extends SubsystemBase {
  TalonFX motor1,motor2,motor3,motor4,armMotor,motor6,motor7,motor8,motor9;
   public ExampleSubsystem() {
+TalonFX motor1 = new TalonFX(9);
+TalonFX motor2 = new TalonFX(0);
+TalonFX motor3 = new TalonFX(10);
+TalonFX motor4 = new TalonFX(19);
 
+
+TalonFX motor6 = new TalonFX(8);
+TalonFX motor7 = new TalonFX(1);
+TalonFX motor8 = new TalonFX(11);
+TalonFX motor9 = new TalonFX(18);
+
+motor6.setNeutralMode(NeutralMode.Brake);
+motor7.setNeutralMode(NeutralMode.Brake);
+motor8.setNeutralMode(NeutralMode.Brake);
+motor9.setNeutralMode(NeutralMode.Brake);
   }
   /**
    * Example command factory method.
@@ -29,14 +43,6 @@ public class ExampleSubsystem extends SubsystemBase {
 
   }
   public void noTurn() {
-motor6.setPosition(0);
-motor7.setPosition(0);
-motor8.setPosition(0);
-motor9.setPosition(0);
-motor6.setNeutralMode(NeutralMode.Brake);
-motor7.setNeutralMode(NeutralMode.Brake);
-motor8.setNeutralMode(NeutralMode.Brake);
-motor9.setNeutralMode(NeutralMode.Brake);
 
   }
   /**

@@ -32,20 +32,19 @@ public class ExampleCommand extends Command {
   // Called when the command is initially scheduled.
   @Override
 
- 
-
   public void initialize() {
+    m_subsystem.noTurn();
     double y = con.getLeftY();
     while(true){
 
     y = con.getLeftY();
-    if(y>=0.1){m_subsystem.leftDrive(y);}
-    if(y<=-0.1){m_subsystem.leftDrive(y);}
+    if(y>=0.1){m_subsystem.leftDrive(0.01);}
+    if(y<=-0.1){m_subsystem.leftDrive(0.01);}
     else{m_subsystem.leftDrive(0);}
       
     y = con.getRightY();
-    if(y>=0.1){m_subsystem.rightDrive(y);}
-    if(y<=-0.1){m_subsystem.rightDrive(y);}
+    if(y>=0.1){m_subsystem.rightDrive(0.01);}
+    if(y<=-0.1){m_subsystem.rightDrive(0.01);}
     else{m_subsystem.rightDrive(0);}
 
     if(con.getAButtonPressed()){
