@@ -4,27 +4,27 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix6.hardware.TalonFX;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ExampleSubsystem extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
   public ExampleSubsystem() {}
-
+    private TalonFX drive;
   /**
-   * Example command factory method.
+   * 
    *
    * @return a command
    */
-  public Command exampleMethodCommand() {
-    // Inline construction of command goes here.
-    // Subsystem::RunOnce implicitly requires `this` subsystem.
-    return runOnce(
-        () -> {
-          /* one-time action goes here */
-        });
+  public void setSpeed(double speed) {
+    drive.set(speed);
   }
 
+  public double getSpeed() {
+    return drive.get();
+  }
   /**
    * An example method querying a boolean state of the subsystem (for example, a digital sensor).
    *
