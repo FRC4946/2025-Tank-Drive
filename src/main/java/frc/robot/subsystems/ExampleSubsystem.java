@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ExampleSubsystem extends SubsystemBase {
- TalonFX motor1,motor2,motor3,motor4,armMotor;
+ TalonFX motor1,motor2,motor3,motor4,armMotor,motor6,motor7,motor8,motor9;
   public ExampleSubsystem() {
 
   }
@@ -28,7 +28,12 @@ public class ExampleSubsystem extends SubsystemBase {
         });
 
   }
-
+  public void noTurn() {
+motor6.setPosition(0);
+motor7.setPosition(0);
+motor8.setPosition(0);
+motor9.setPosition(0);
+  }
   /**
    * An example method querying a boolean state of the subsystem (for example, a digital sensor).
    *
