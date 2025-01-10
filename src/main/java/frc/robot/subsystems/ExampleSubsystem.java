@@ -12,42 +12,51 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 
 public class ExampleSubsystem extends SubsystemBase {
+  TalonFX motor1,motor2,motor3,motor4,armMotor,motor6,motor7,motor8,motor9;
+  public ExampleSubsystem() {
+TalonFX motor1 = new TalonFX(9);
+TalonFX motor2 = new TalonFX(0);
+TalonFX motor3 = new TalonFX(10);
+TalonFX motor4 = new TalonFX(19);
 
+
+TalonFX motor6 = new TalonFX(8);
+TalonFX motor7 = new TalonFX(1);
+TalonFX motor8 = new TalonFX(11);
+TalonFX motor9 = new TalonFX(18);
+
+motor6.setNeutralMode(NeutralModeValue.Brake);
+motor7.setNeutralMode(NeutralModeValue.Brake);
+motor8.setNeutralMode(NeutralModeValue.Brake);
+motor9.setNeutralMode(NeutralModeValue.Brake);
+  }
   /** Creates a new ExampleSubsystem. */
-    public static TalonFX drive1, drive2, drive3, drive4; //Drive1 = Front Left, Drive2 = Front Right, Drive3 = Back Left, Drive4 = Back Right
   /**
    * 
    *
    * @return a command
    */
   public double[] getSpeed() {
-    double[] getSpeedArray = {drive1.get(), drive2.get(), drive3.get(), drive4.get()};
+    double[] getSpeedArray = {motor1.get(), motor2.get(), motor3.get(), motor4.get()};
     return getSpeedArray;
   }
   public void rightWheels(double speed) {
-    drive2.setVoltage(speed);
-    drive4.setVoltage(speed);
+    motor1.set(speed);
+    motor3.set(speed);
   }
   public void leftWheels(double speed) {
-    drive1.setVoltage(-speed);
-    drive3.setVoltage(-speed);
+    motor2.set(speed);
+    motor4.set(speed);
+  }
+  public void turnRightCommand() {
+    rightWheels(0.5);
+    leftWheels(-0.5);
   }
   /**
    * An example method querying a boolean state of the subsystem (for example, a digital sensor).
    *
    * @return value of some boolean subsystem state, such as a digital sensor.
    */
-  public boolean turnRightCommand() {
-    drive1.setVoltage(0.01);
-    drive2.setVoltage(-0.01);
-    drive3.setVoltage(0.01);
-    drive4.setVoltage(-0.01);
-    if(drive1.get() == 0.01 && drive2.get() == -0.01 && drive3.get() == 0.01 && drive4.get() == -0.01) {
-      return true;
-    } else {
-      return false;
-    }
-  }
   public boolean exampleCondition() {
     // Query some boolean state, such as a digital sensor.
     return false;
