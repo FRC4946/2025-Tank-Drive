@@ -12,23 +12,27 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 
 public class ExampleSubsystem extends SubsystemBase {
-  TalonFX motor1,motor2,motor3,motor4,armMotor,motor6,motor7,motor8,motor9;
+  private final TalonFX motor1,motor2,motor3,motor4,motor6,motor7,motor8,motor9;
   public ExampleSubsystem() {
-TalonFX motor1 = new TalonFX(9);
-TalonFX motor2 = new TalonFX(0);
-TalonFX motor3 = new TalonFX(10);
-TalonFX motor4 = new TalonFX(19);
+ motor1 = new TalonFX(9, "Drivetrain CANivore");
+ motor2 = new TalonFX(0, "Drivetrain CANivore");
+ motor3 = new TalonFX(10, "Drivetrain CANivore");
+ motor4 = new TalonFX(19, "Drivetrain CANivore");
 
 
-TalonFX motor6 = new TalonFX(8);
-TalonFX motor7 = new TalonFX(1);
-TalonFX motor8 = new TalonFX(11);
-TalonFX motor9 = new TalonFX(18);
+ motor6 = new TalonFX(8, "Drivetrain CANivore");
+ motor7 = new TalonFX(1, "Drivetrain CANivore");
+ motor8 = new TalonFX(11, "Drivetrain CANivore");
+ motor9 = new TalonFX(18, "Drivetrain CANivore");
 
 motor6.setNeutralMode(NeutralModeValue.Brake);
 motor7.setNeutralMode(NeutralModeValue.Brake);
 motor8.setNeutralMode(NeutralModeValue.Brake);
 motor9.setNeutralMode(NeutralModeValue.Brake);
+motor1.setNeutralMode(NeutralModeValue.Brake);
+motor2.setNeutralMode(NeutralModeValue.Brake);
+motor3.setNeutralMode(NeutralModeValue.Brake);
+motor4.setNeutralMode(NeutralModeValue.Brake);
   }
   /** Creates a new ExampleSubsystem. */
   /**
@@ -36,7 +40,7 @@ motor9.setNeutralMode(NeutralModeValue.Brake);
    *
    * @return a command
    */
-  public double[] getSpeed() {
+  public double[] getAllSpeeds() {
     double[] getSpeedArray = {motor1.get(), motor2.get(), motor3.get(), motor4.get()};
     return getSpeedArray;
   }
@@ -51,6 +55,16 @@ motor9.setNeutralMode(NeutralModeValue.Brake);
   public void turnRightCommand() {
     rightWheels(0.5);
     leftWheels(-0.5);
+  }
+  public void noTurn() {
+    motor1.setPosition(0);
+    motor2.setPosition(0);
+    motor3.setPosition(0);
+    motor4.setPosition(0);
+    motor6.setPosition(0);
+    motor7.setPosition(0);
+    motor8.setPosition(0);
+    motor9.setPosition(0);
   }
   /**
    * An example method querying a boolean state of the subsystem (for example, a digital sensor).
