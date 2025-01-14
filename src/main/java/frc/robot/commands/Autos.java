@@ -14,4 +14,9 @@ public final class Autos {
   private Autos() {
     throw new UnsupportedOperationException("This is a utility class!");
   }
+
+public static Command exampleAuto(ExampleSubsystem m_exampleSubsystem) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'exampleAuto'");
+}
 }
