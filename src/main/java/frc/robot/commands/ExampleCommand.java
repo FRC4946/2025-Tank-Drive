@@ -11,6 +11,7 @@ import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Axis;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
@@ -43,14 +44,28 @@ public class ExampleCommand extends Command {
   public void execute() {    
     double rightY = con.getRawAxis(XboxController.Axis.kRightY.value);
     double leftY = con.getRawAxis(XboxController.Axis.kLeftY.value);
+    double leftX = con.getRawAxis(XboxController.Axis.kLeftX.value);
 
-    if (leftY >= 0.1) {
+    double thetaRadians = Math.atan(leftY / leftX);
+    double thetaDegrees = Math.abs((Math.toDegrees(thetaRadians)));
+   if(leftY<0 && leftX > 0){thetaDegrees += 90;}
+   else if(leftY<0 && leftX > 0){thetaDegrees += 180;}
+   else if(leftY>0 && leftX > 0){thetaDegrees += 270;}
 
- m_subsystem.TurnMotor6(10);
-  
-    }else{}
 
-    /*else
+   m_subsystem.TurnMotor6(thetaDegrees);
+
+}
+/* 
+
+ m_subsystem.TurnMotor6((int)thetaDeikkkkki.,
+ .,,,,,,,,,,,grees);
+
+
+
+ if (leftY >= 0.1) {
+  m_subsystem.leftDrive(leftY);
+ }else
     if (leftY <= 0.1) {
       m_subsystem.leftDrive(leftY);
     } else {
@@ -65,10 +80,10 @@ public class ExampleCommand extends Command {
     } else {
       m_subsystem.rightDrive(0);
   }
-*/
+
     }
   
-
+*/
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {

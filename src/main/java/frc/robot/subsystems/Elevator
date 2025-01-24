@@ -174,14 +174,14 @@ motor6.set(0);
    
       while (!(currentDegree>=wantedDegree-10 && currentDegree<=wantedDegree+10)) {
       
-      motor9.set(difference/Math.abs(difference)/10);
+      motor9.set((difference/Math.abs(difference)*(1-1/Math.abs(difference)))/2);
       currentDegree = (CANcoder4.getAbsolutePosition().getValueAsDouble())*360;
       difference = wantedDegree-currentDegree;
       SmartDashboard.putNumber("isWorking",test);
       SmartDashboard.putNumber("difference",difference);
       SmartDashboard.putNumber("current",currentDegree);
       test++;
-      if(difference>=wantedDegree-1 && difference<=1+wantedDegree){break;}
+      if(!(currentDegree>=wantedDegree-10 && currentDegree<=wantedDegree+10)){break;}
     }
 
     motor9.set(0);
